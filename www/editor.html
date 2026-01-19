@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Edit Note</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <!-- <link rel="stylesheet" href="css\materialize.css"> -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/bulma.css">
+  <link rel="stylesheet" href="assets/boxicon/fonts/basic/boxicons.css">
+  <link rel="stylesheet" href="css/theme.css">
+
+  <script type="module" src="js/app.js"></script>
+  <script src="js/theme.js"></script>
+</head>
+
+<body class="page">
+
+  <div class="container px-4 pt-4">
+    <div class="level is-mobile">
+      <div class="level-left">
+        <div class="level-item">
+          <a href="index.html" class="button is-light">
+            <i class='bx bx-arrow-to-left mr-2'></i>Back
+          </a>
+        </div>
+      </div>
+    </div>
+    
+    <div class="toolbar-container my-4">
+      <div class="field is-grouped is-grouped-multiline is-flex-wrap-wrap is-justify-content-center">
+        <div class="control">
+          <button onclick="format('bold')" type="button" class="button is-small ">
+            <strong>B</strong>
+          </button>
+        </div>
+        <div class="control">
+          <button onclick="format('italic')" type="button" class="button is-small ">
+            <em>I</em>
+          </button>
+        </div>
+        <div class="control">
+          <button onclick="format('underline')" type="button" class="button is-small ">
+            <u>U</u>
+          </button>
+        </div>
+        <div class="control">
+          <button onclick="format('strikeThrough')" type="button" class="button is-small ">
+            <s>S</s>
+          </button>
+        </div>
+        <div class="control">
+          <button onclick="format('insertUnorderedList')" type="button" class="button is-small ">
+            <i class="bx bx-list-ul"></i>
+          </button>
+        </div>
+        <div class="control">
+          <div class="select is-small">
+            <select onchange="format('fontSize', this.value)">
+              <option value="1">Kecil</option>
+              <option value="3">Normal</option>
+              <option value="5">Besar</option>
+            </select>
+          </div>
+        </div>
+        <div class="control">
+          <button onclick="format('justifyLeft')" type="button" class="button is-small ">
+            <i class="bx bx-align-left"></i>
+          </button>
+        </div>
+        <div class="control">
+          <button onclick="format('justifyCenter')" type="button" class="button is-small ">
+            <i class="bx bx-align-center"></i>
+          </button>
+        </div>
+        <div class="control">
+          <button onclick="format('justifyRight')" type="button" class="button is-small is-light">
+            <i class="bx bx-align-right"></i>
+          </button>
+        </div>
+        <div class="control">
+          <button onclick="format('removeFormat')" type="button" class="button is-small is">
+            <i class="bx bx-eraser"></i>
+          </button>
+        </div>
+        
+      </div>
+    </div>
+
+    
+  <hr>
+
+  <div class="container">
+    <div class="editor-container">
+      <input id="titleInput" placeholder="Judul" class="input is-medium title mb-4" />
+      
+      <div id="textInput" contenteditable="true" class="editor-area p-4"
+           data-placeholder="Tulis catatan...">
+      </div>
+      
+      <div class="editor-stats is-flex is-justify-content-space-between is-size-7 has-text-grey px-3 py-2">
+        <span>Word: <span id="wordCount">0</span></span>
+        <span>Char: <span id="charCount">0</span></span>
+      </div>
+    </div>
+  </div>
+
+
+
+
+  <script src="js/storage.js"></script>
+  <script src="js/editor.js"></script>
+  <script type="module" src="js/app.js"></script>
+</body>
+
+</html>

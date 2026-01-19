@@ -1,0 +1,449 @@
+@import './theme.css';
+
+:root {
+  --ease: cubic-bezier(.2, .6, .2, 1);
+  --fast: .15s;
+  --normal: .25s;
+  --slow: .35s;
+}
+
+* {
+  transition: none;
+}
+
+body{
+  font-family: inherit;
+}
+
+button, .card, .listNotes, .fab-btn, .sidebar {
+  transition: background-color var(--normal) var(--ease),
+              transform var(--fast) var(--ease),
+              box-shadow var(--fast) var(--ease),
+              opacity var(--fast) var(--ease);
+}
+
+.listNotes,
+.noteSampah,
+.dropdown-menu,
+.dropdown-content {
+
+  border: none;
+  border-radius: 16px;
+  background: var(--card);
+}
+
+.listNotes,
+.noteSampah,
+.card {
+  box-shadow: 0 6px 18px rgba(0,0,0,.08);
+}
+
+.listNotes:hover,
+.noteSampah:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 24px rgba(0,0,0,.12);
+}
+
+.fab-btn {
+  transition:
+    transform var(--fast) var(--ease),
+    box-shadow var(--fast) var(--ease);
+  
+  background: var(--primary);
+}
+
+.fab-btn:hover {
+  transform: translateY(-2px);
+}
+
+.fab-btn:active {
+  transform: scale(.92);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, .25);
+}
+
+.fab-menu {
+  opacity: 0;
+  transform: translateY(10px) scale(.95);
+  pointer-events: none;
+}
+
+.fab-menu.active {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  pointer-events: auto;
+}
+
+.page {
+  animation: pageIn .25s var(--ease);
+}
+
+@keyframes pageIn {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.areaCatatan:focus,
+.judulCatatan:focus {
+  background-color: rgba(0, 0, 0, .03);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+
+#actionDropdown {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 99999;
+}
+
+
+.hiddenScroll {
+  overflow: hidden;
+  overflow-y: hidden;
+  overflow-x: hidden;
+}
+
+.editor-wrapper {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+
+.areaCatatan {
+  border: none;
+  box-shadow: none;
+  resize: none;
+  outline: none;
+  width: 100%;
+  font-size: 0.9rem;
+  line-height: 1.5rem;
+  background-color: transparent;
+  min-height: 12rem;
+  flex: 1;
+  padding: 1rem;
+  overflow-y: scroll;
+  scrollbar-width: none;
+  scrollbar-color: var(--primary) transparent;
+  overflow-x: hidden;
+
+  
+}
+
+.judulCatatan {
+  border: none;
+  box-shadow: none;
+  resize: none;
+  outline: none;
+  width: 100%;
+  font-size: 1.2rem;
+  font-weight: bold;
+  min-height: 3rem;
+  max-height: 8rem;
+  background-color: transparent;
+  
+
+}
+
+.notes-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  
+}
+
+
+.listNotes {
+  cursor: pointer;
+  width: 150px;
+  min-height: 180px;
+  overflow: hidden;
+  border-radius: 1rem;
+
+  
+}
+
+.listNotes-Sampah {
+  cursor: pointer;
+  width: 400px;
+  min-height: 180px;
+  overflow: hidden;
+  border-radius: 1rem;
+
+  background: var(--btn);
+}
+
+
+
+.backBtn {
+  align-items: center;
+
+}
+
+.editor-area {
+  min-height: 12rem;
+  line-height: 1.6;
+  
+}
+
+.editor-area:empty::before {
+  content: attr(data-placeholder);
+}
+
+/* FIX LIST */
+.editor-area ul {
+  list-style: disc;
+  padding-left: 24px;
+}
+
+.editor-area li {
+  margin-bottom: 6px;
+}
+
+.judulCatatanIndex {
+  min-height: 3rem;
+  border-bottom: 2px solid var(--text);
+  padding-bottom: 0.5rem;
+}
+
+.headerCatatanIndex {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.editor-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  border-bottom: var(--background) 1px solid;
+}
+
+.editBtn {
+  background: transparent;
+  border: none;
+  color: var(--text);
+  font-weight: 500;
+  padding: 6px 10px;
+  border-radius: 8px;
+  min-width: 40px;
+}
+
+.editBtn:hover {
+  background: var(--btn);
+}
+
+.editBtn:active {
+  background: var(--btn2);
+}
+
+.editBtn select {
+  background: transparent;
+  border: none;
+  color: var(--text);
+  font-weight: 500;
+  padding: 0;
+  margin: 0;
+  cursor:grab;
+}
+
+.editBtn select:focus {
+  outline: none;
+}
+
+.pinned {
+  border: 2px solid #ffd966;
+  background-color: var(--background);
+}
+
+.bxs-pin {
+  color: #ff9800;
+}
+
+
+.noteSampah {
+  cursor: pointer;
+  aspect-ratio: 3 / 4;
+  width: 100%;
+  max-width: 140px;
+}
+
+.fab-container {
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  bottom: 20px;
+  right: 20px;
+  z-index: 99999;
+}
+
+/* tombol bulat */
+.fab-btn {
+  border-radius: 50%;
+  width: 56px;
+  height: 56px;
+  font-size: 1.5rem;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, .25);
+}
+
+/* menu dropdown */
+.fab-menu {
+  position: absolute;
+  bottom: 70px;
+  right: 0;
+  min-width: 180px;
+  padding: 0.5rem;
+}
+
+/* item menu */
+.fab-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 10px;
+  border-radius: 6px;
+  color: #363636;
+}
+
+.fab-item:hover {
+  background: #f5f5f5;
+}
+
+/* tombol hamburger */
+.sidebar-toggle {
+  position: fixed;
+  top: 16px;
+  left: 16px;
+  z-index: 10001;
+}
+
+
+
+/* backdrop */
+.sidebar-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, .4);
+  opacity: 0;
+  pointer-events: none;
+  transition: .2s;
+  z-index: 10000;
+}
+
+.sidebar-backdrop.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* sidebar */
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: min(260px, 80vw);
+  height: 100dvh;
+  transition: transform var(--normal) var(--ease);
+  transform: translateX(-100%);
+  z-index: 10001;
+}
+
+/* aktif */
+.sidebar.active {
+  transform: translateX(0);
+}
+
+/* item */
+.sidebar-item {
+  display: flex;
+  gap: 12px;
+  padding: 12px 20px;
+}
+
+i,
+.bx {
+  color: var(--primary);
+}
+
+.sb-btn {
+  color: var(--text);
+
+  border: none;
+  display: flex;
+  align-items: center;
+
+  height: 3rem;
+  border-radius: 1.5rem;
+}
+
+.sb-btn:hover {
+  background: var(--btn);
+}
+
+.cardSampah{
+  height: 80px;
+}
+
+/* Editor Stats */
+.editor-stats {
+  background: var(--btn);
+  border-radius: 6px;
+  padding: 8px 12px;
+  margin-top: 8px;
+  border: 1px solid var(--background);
+}
+
+.editor-stats span {
+  font-weight: 500;
+}
+
+/* Toolbar Container */
+.toolbar-container {
+  background: var(--card);
+  border-radius: 8px;
+  padding: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  border: 1px solid var(--background);
+}
+
+/* Editor Container */
+.editor-container {
+  background: var(--card);
+  border-radius: 8px;
+  padding: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  border: 1px solid var(--background);
+  max-width: 100%;
+}
+
+.editor-container .input {
+  border: 1px solid var(--background);
+  background: var(--btn);
+  font-size: 1.25rem;
+  font-weight: 600;
+  width: 100%;
+}
+
+.editor-container .input:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 0.125em rgba(72, 95, 199, 0.25);
+}
+
+.editor-area {
+  min-height: 20rem;
+  line-height: 1.6;
+  width: 100%;
+  border: 1px solid var(--background);
+  border-radius: 6px;
+  background: var(--btn);
+}

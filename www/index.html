@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Keepit</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- <link rel="stylesheet" href="css\materialize.css"> -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/bulma.css">
+    <link rel="stylesheet" href="assets/boxicon/fonts/basic/boxicons.css">
+    <link rel="stylesheet" href="css/theme.css">
+    <script type="module" src="js/app.js"></script>
+    <script src="js/theme.js"></script>
+</head>
+
+<body class="page">
+
+    <!-- Hamburger -->
+    <button class="button sidebar-toggle mx-2 mt-2" onclick="toggleSidebar()">
+        <i class="bx bx-menu"></i>
+    </button>
+
+    <!-- Backdrop -->
+    <div id="sidebarBackdrop" class="sidebar-backdrop" onclick="closeSidebar()"></div>
+
+    <!-- Sidebar -->
+    <aside id="sidebar" class="sidebar is-flex is-flex-direction-column p-4">
+        <h4 class="title is-3 px-4 mt-4">
+            <i class='bx  bx-note'></i> Keepit
+        </h4>
+        <hr>
+
+        <a class="sb-btn my-2 mx-2" href="trash.html">
+            <i class="bx bx-trash  mx-4"></i> Recycle Bin
+        </a>
+
+        <a class="sb-btn mx-2 my-2" onclick="document.getElementById('importFile').click()">
+            <input type="file" id="importFile" accept=".json" hidden>
+            <i class='bx  bx-folder-up-arrow mx-4'></i>  Restore
+        </a>
+
+        <a class="sb-btn mx-2 my-2" onclick="exportNotes()">
+            <i class='bx  bx-folder-down-arrow mx-4'></i>   Backup
+        </a>
+
+        <a class="sb-btn my-2 mx-2" href="settings.html">
+            <i class="bx bx-trash  mx-4"></i> Settings
+        </a>
+
+    </aside>
+
+
+    <div class="container">
+        <div class="section main-content">
+            <div class="field mb-0">
+                <div class="control has-icons-left">
+                    <input id="searchInput" class="input" type="text" placeholder="Search notes..." oninput="filterNotes()">
+                    <span class="icon is-left">
+                        <i class="bx bx-search"></i>
+                    </span>
+                </div>
+            </div>
+
+        </div>
+
+
+        <h5 class="title is-size-2-touch px-4 mx-4">
+            My Notes
+        </h5>
+    </div>
+    <hr>
+    <div class="container px-3 py-2">
+        <h6 id="pinnedTitle" class="title is-6 has-text-grey px-2 is-hidden">
+            Pinned Notes
+        </h6>
+        <div id="pinnedNotes" class="notes-grid">
+        </div>
+
+        <h6 id="othersTitle" class="title is-6 has-text-grey px-2 is-hidden mt-4">
+            Other Notes
+        </h6>
+        <div id="notes" class="notes-grid">
+        </div>
+
+        <p id="emptyState" class="has-text-centered has-text-grey is-hidden">
+            Belum ada catatan
+        </p>
+
+        <div class="modal p-6" id="deleteModal">
+            <div class="modal-background"></div>
+
+            <div class="modal-card">
+                <header class="modal-card-head">
+                    <i class='bx  bx-alert-square is-size-3-touch mr-2'></i>
+                    <p class="modal-card-title">
+
+                        Hapus catatan?</p>
+                    <!-- <button class="delete" aria-label="close"></button> -->
+                </header>
+
+                <section class="modal-card-body">
+                    <p>
+                        Catatan ini akan dipindahkan ke sampah.
+                    </p>
+                </section>
+
+                <footer class="modal-card-foot is-flex is-justify-content-center pb-4">
+                    <button class="button is-danger mx-2" id="confirmDelete">
+                        Konfirmasi
+                    </button>
+                    <button class="button mx-2" id="cancelDelete">
+                        Batal
+                    </button>
+                </footer>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Floating Action Button -->
+    <div class="fab-container">
+        <a href="editor.html" class="button fab-btn is-large mb-4">
+            <i class='bx  bx-heart-plus'></i> 
+        </a>
+
+        <a href="editor.html" class="button fab-btn is-large">
+            <i class='bx bx-plus'></i>
+        </a>
+    </div>
+
+    <script src="js/storage.js"></script>
+    <script src="js/index.js"></script>
+    <script type="module" src="js/app.js"></script>
+</body>
+
+</html>

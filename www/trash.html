@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Keepit</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <!-- <link rel="stylesheet" href="css\materialize.css"> -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/bulma.css">
+  <link rel="stylesheet" href="assets/boxicon/fonts/basic/boxicons.css">
+  <link rel="stylesheet" href="css/theme.css">
+  <script type="module" src="js/app.js"></script>
+  <script src="js/theme.js"></script>
+</head>
+
+<body class="page">
+  <input type="file" id="importFile" accept=".json" hidden>
+
+
+
+  <div class="container">
+
+    <a href="index.html" class="button title is-6 m-4 backBtn">
+      <i class='bx  bx-arrow-to-left mr-2'></i> Back
+    </a>
+    <div class="section main-content">
+      <article class="message is-small">
+        <div class="message-header">
+          <p>What is Recycle Bin?</p>
+          <button class="delete" aria-label="delete"></button>
+        </div>
+        <div class="message-body">
+          <p>
+            Deleted notes are stored temporarily.
+            Restore or delete them permanently at any time.
+          </p>
+        </div>
+      </article>
+
+    </div>
+
+
+    <h5 class="title is-size-2-touch px-4 mx-4">
+      Recycle Bin
+    </h5>
+  </div>
+  <hr>
+  <div class="container px-3 py-2">
+
+    <h6 class="title is-6 has-text-grey px-2 mt-4">
+      Deleted Notes
+    </h6>
+    <div id="trashList" class="notes-grid">
+    </div>
+
+    <p id="emptyTrash" class="has-text-grey is-hidden my-2">
+      Your Recycle Bin is clean.
+    </p>
+
+
+    <div class="modal has-text-centered p-4 m-4" id="deleteModal">
+      <div class="modal-background"></div>
+
+      <div class="modal-card">
+        <header class="modal-card-head">
+          <p class="modal-card-title">Permanent Delete</p>
+        </header>
+
+        <section class="modal-card-body">
+          <p>
+            Note will deleted permanent.<br> <strong>This action can’t be undone</strong>
+          </p>
+        </section>
+
+        <footer class="modal-card-foot is-flex is-justify-content-center">
+          <button class="button is-danger mx-2" id="confirmDeleteBtn">
+            Sure
+          </button>
+          <button class="button mx-2" onclick="closeDeleteModal()">Cancel</button>
+        </footer>
+      </div>
+    </div>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        const deleteModal = document.querySelectorAll('.section .message .delete');
+
+        deleteModal.forEach(btn => {
+          btn.addEventListener('click', () => {
+            const message = btn.closest('.message');
+            if (message) {
+              message.remove(); // atau message.style.display = 'none';
+            }
+          });
+        });
+      });
+    </script>
+
+
+    <script src="js/storage.js"></script>
+    <script src="js/trash.js"></script>
+    <script type="module" src="js/app.js"></script>
+</body>
+
+</html>

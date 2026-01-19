@@ -1,0 +1,56 @@
+@font-face {
+  font-family: 'Inter';
+  src: url('../assets/font/Inter_18pt-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+
+
+html, body, .box, .card, .sidebar {
+
+  font-family: 'Inter', sans-serif;
+  background-color: var(--bg);
+}
+
+:root[data-theme="light"] {
+  --bg: #f3f5f4;
+  --card: #ffffff;
+  --sb: #eef1ef;
+  --text: #1f2a24;
+
+  --primary: #7fa99b;   /* sage */
+  --btn: #e4ebe7;
+  --btn2: #5f8575;
+}
+
+:root[data-theme="dark"] {
+  --bg: #121615;
+  --card: #1a1f1d;
+  --sb: #151a18;
+  --text: #e6ebe8;
+
+  --primary: #8fbfaf;   /* sage terang */
+  --btn: #1f2522;
+  --btn2: #6f9c8c;
+}
+
+
+
+
+body {
+  background: var(--bg);
+  color: var(--text);
+}
+
+.box, .card, .sidebar {
+  background: var(--sb);
+}
+
+button, .button{
+    background-color: var(--btn);
+    color: var(--text);
+
+    border: none;
+}

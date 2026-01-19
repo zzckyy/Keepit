@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">KEEPIT</string>
+    <string name="title_activity_main">KEEPIT</string>
+    <string name="package_name">com.momaza.keepit</string>
+    <string name="custom_url_scheme">com.momaza.keepit</string>
+</resources>
