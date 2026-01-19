@@ -4,3 +4,4 @@ android/.gradle/
 android/build/
 android/app/build/
 .env
+www/assets/boxicon
