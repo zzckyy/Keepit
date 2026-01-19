@@ -5,3 +5,7 @@ android/build/
 android/app/build/
 .env
 www/assets/boxicon
+android/.idea
+android/local.properties
+*.log
+android/keystore
