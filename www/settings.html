@@ -8,11 +8,13 @@
     
     <link rel="stylesheet" href="css/bulma.css">
     <link rel="stylesheet" href="assets/boxicon/fonts/basic/boxicons.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/theme.css">
     
     <script type="module" src="js/app.js"></script>
     <script src="js/theme.js"></script>
+    <script src="js/storage.js"></script>
 </head>
 
 <body class="page">
@@ -22,14 +24,9 @@
         <div class="level is-mobile">
             <div class="level-left">
                 <div class="level-item">
-                    <a href="index.html" class="button is-light is-small">
+                    <a href="index.html" class="button title is-6 backBtn">
                         <i class='bx bx-arrow-to-left mr-2'></i>Back
                     </a>
-                </div>
-            </div>
-            <div class="level-right">
-                <div class="level-item">
-                    <h1 class="title is-5">Settings</h1>
                 </div>
             </div>
         </div>
@@ -39,6 +36,7 @@
 
     <!-- Main Content -->
     <div class="container px-3 pb-3">
+        <h1 class="title is-size-4-touch px-4">Settings</h1>
         <div class="columns is-multiline">
             
             <!-- Theme Settings Card -->
@@ -51,7 +49,7 @@
                             </span>
                             <div>
                                 <p class="title is-5">Theme Settings</p>
-                                <p class="subtitle is-7">Pilih tema untuk aplikasi</p>
+                                <p class="subtitle is-7">Select your personalities themes</p>
                             </div>
                         </div>
                     </header>
@@ -86,11 +84,11 @@
                     <header class="card-header">
                         <div class="card-header-title">
                             <span class="icon is-medium mr-2">
-                                <i class="bx bx-data is-size-4"></i>
+                                <i class="bx bx-archive is-size-4"></i>
                             </span>
                             <div>
                                 <p class="title is-5">Data Management</p>
-                                <p class="subtitle is-7">Kelola data catatan Anda</p>
+                                <p class="subtitle is-7">Save and Load your notes</p>
                             </div>
                         </div>
                     </header>
@@ -99,7 +97,7 @@
                             <div class="control">
                                 <button class="button is-info is-small is-fullwidth-mobile" onclick="exportNotes()">
                                     <span class="icon is-small">
-                                        <i class="bx bx-download"></i>
+                                        <i class='bx  bx-archive-arrow-up'></i> </i>
                                     </span>
                                     <span>Backup</span>
                                 </button>
@@ -107,7 +105,7 @@
                             <div class="control">
                                 <label class="button is-warning is-small is-fullwidth-mobile">
                                     <span class="icon is-small">
-                                        <i class="bx bx-upload"></i>
+                                        <i class='bx  bx-archive-arrow-down'></i>
                                     </span>
                                     <span>Restore</span>
                                     <input type="file" accept=".json" onchange="importNotes(event)" hidden>
@@ -129,17 +127,6 @@
             <!-- App Info Card -->
             <div class="column is-12-mobile is-10-tablet is-8-desktop is-offset-1-tablet is-offset-2-desktop">
                 <div class="card">
-                    <header class="card-header">
-                        <div class="card-header-title">
-                            <span class="icon is-medium mr-2">
-                                <i class="bx bx-info-circle is-size-4"></i>
-                            </span>
-                            <div>
-                                <p class="title is-5">About</p>
-                                <p class="subtitle is-7">Informasi aplikasi Keepit</p>
-                            </div>
-                        </div>
-                    </header>
                     <div class="card-content">
                         <div class="media">
                             <div class="media-left">
@@ -149,21 +136,15 @@
                             </div>
                             <div class="media-content">
                                 <div class="content">
-                                    <p class="title is-6">Keepit - Aplikasi Catatan Sederhana</p>
-                                    <p class="subtitle is-7">Versi 1.2.0</p>
-                                    <p class="mt-2 is-size-7">Aplikasi catatan yang ringan dan mudah digunakan untuk menyimpan ide-ide penting Anda.</p>
+                                    <p class="title is-6">Keepit - Simple Notes App</p>
+                                    <p class="subtitle is-7 mt-1">Versi 1.2.0</p>
+                                    <p class="mt-1 is-size-7">All notes are stored locally on your device with no accounts, no tracking, and no data collection.</p>
                                     <div class="buttons mt-3">
-                                        <button class="button is-info is-outlined is-small">
-                                            <span class="icon is-small">
-                                                <i class="bx bx-help-circle"></i>
-                                            </span>
-                                            <span>Bantuan</span>
-                                        </button>
                                         <button class="button is-link is-outlined is-small">
                                             <span class="icon is-small">
                                                 <i class="bx bx-star"></i>
                                             </span>
-                                            <span>Rating</span>
+                                            <span><a href="#">Rating</a></span>
                                         </button>
                                     </div>
                                 </div>
@@ -175,38 +156,5 @@
 
         </div>
     </div>
-
-    <!-- Scripts -->
-    <script src="js/storage.js"></script>
-    <script src="js/theme.js"></script>
-
-    <script>
-        function importNotes(event) {
-            const file = event.target.files[0];
-            if (!file) return;
-
-            const reader = new FileReader();
-            reader.onload = function(e) {
-                try {
-                    const importedNotes = JSON.parse(e.target.result);
-                    if (!Array.isArray(importedNotes)) throw "Format salah";
-
-                    saveNotes(importedNotes);
-                    alert("Import berhasil 🎉");
-                } catch (err) {
-                    alert("File invalid ❌");
-                }
-            };
-            reader.readAsText(file);
-        }
-
-        function clearAllData() {
-            if (confirm("Apakah Anda yakin ingin menghapus semua catatan? Tindakan ini tidak dapat dibatalkan!")) {
-                localStorage.removeItem("keepit_notes");
-                alert("Semua data telah dihapus");
-            }
-        }
-    </script>
 </body>
-
 </html>

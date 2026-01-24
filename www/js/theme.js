@@ -1,5 +1,10 @@
 const THEME_KEY = "keepit-theme"; // light | dark | auto
 
+if (!window.THEME_KEY) {
+  window.THEME_KEY = "keepit-theme";
+}
+
+
 function applyTheme(theme) {
   if (theme === "auto") {
     const isDark = window.matchMedia("(prefers-color-scheme: dark)").matches;

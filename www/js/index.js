@@ -167,65 +167,7 @@ async function shareNote(noteId) {
 }
 
 
-async function exportNotes() {
-    const notes = getNotes();
-    const dataStr = JSON.stringify(notes, null, 2);
 
-    // 🌐 WEB (browser biasa)
-    if (!isNative) {
-        const blob = new Blob([dataStr], { type: "application/json" });
-        const url = URL.createObjectURL(blob);
-
-        const a = document.createElement("a");
-        a.href = url;
-        a.download = "keepit-notes-backup.json";
-        a.click();
-
-        URL.revokeObjectURL(url);
-        return;
-    }
-
-    // 📱 ANDROID (Capacitor)
-    const { Filesystem, Directory, Encoding } = Capacitor.Plugins;
-
-    try {
-        const fileName = `keepit-backup-${Date.now()}.json`;
-
-        await Filesystem.writeFile({
-            path: fileName,
-            data: dataStr,
-            directory: Directory.Documents,
-            encoding: Encoding.UTF8
-        });
-
-        alert("Backup tersimpan di Documents");
-    } catch (err) {
-        console.error(err);
-        alert("Gagal export");
-    }
-}
-
-
-document.getElementById("importFile").addEventListener("change", function (e) {
-    const file = e.target.files[0];
-    if (!file) return;
-
-    const reader = new FileReader();
-    reader.onload = function (event) {
-        try {
-            const importedNotes = JSON.parse(event.target.result);
-            if (!Array.isArray(importedNotes)) throw "Format salah";
-
-            saveNotes(importedNotes);
-            renderNotes();
-            alert("Import berhasil 🎉");
-        } catch (err) {
-            alert("File invalid ❌");
-        }
-    };
-
-    reader.readAsText(file);
-});
 
 function moveToTrash(id) {
     const notes = getNotes().map(note => {

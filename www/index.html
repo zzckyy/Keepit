@@ -12,7 +12,10 @@
     <link rel="stylesheet" href="css/bulma.css">
     <link rel="stylesheet" href="assets/boxicon/fonts/basic/boxicons.css">
     <link rel="stylesheet" href="css/theme.css">
+    
     <script type="module" src="js/app.js"></script>
+    <script src="js/theme.js"></script>
+    <script src="js/storage.js"></script>
     <script src="js/theme.js"></script>
 </head>
 
@@ -35,15 +38,6 @@
 
         <a class="sb-btn my-2 mx-2" href="trash.html">
             <i class="bx bx-trash  mx-4"></i> Recycle Bin
-        </a>
-
-        <a class="sb-btn mx-2 my-2" onclick="document.getElementById('importFile').click()">
-            <input type="file" id="importFile" accept=".json" hidden>
-            <i class='bx  bx-folder-up-arrow mx-4'></i>  Restore
-        </a>
-
-        <a class="sb-btn mx-2 my-2" onclick="exportNotes()">
-            <i class='bx  bx-folder-down-arrow mx-4'></i>   Backup
         </a>
 
         <a class="sb-btn my-2 mx-2" href="settings.html">
@@ -130,10 +124,5 @@
             <i class='bx bx-plus'></i>
         </a>
     </div>
-
-    <script src="js/storage.js"></script>
-    <script src="js/index.js"></script>
-    <script type="module" src="js/app.js"></script>
 </body>
-
 </html>
