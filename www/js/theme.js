@@ -1,5 +1,3 @@
-const THEME_KEY = "keepit-theme"; // light | dark | auto
-
 if (!window.THEME_KEY) {
   window.THEME_KEY = "keepit-theme";
 }

@@ -1,36 +1,61 @@
+/* ===============================
+   PARAMS
+================================ */
 const params = new URLSearchParams(window.location.search);
 let noteId = params.get("id");
 
-const titleInput = document.getElementById("titleInput");
-const textInput = document.getElementById("textInput");
 
+/* ===============================
+   DOM CACHE
+================================ */
+const DOM = {
+  title: document.getElementById("titleInput"),
+  text: document.getElementById("textInput"),
+  wordCount: document.getElementById("wordCount"),
+  charCount: document.getElementById("charCount"),
+};
+
+
+/* ===============================
+   STATE
+================================ */
 let notes = getNotes();
 let note = null;
 let saveTimer = null;
 
-/* =====================
+
+/* ===============================
    LOAD NOTE
-===================== */
-if (noteId) {
+================================ */
+function loadNote() {
+  if (!noteId || !DOM.title || !DOM.text) return;
+
   note = notes.find(n => n.id === noteId);
-  if (note) {
-    titleInput.value = note.title || "";
-    textInput.innerHTML = note.text || "";
-  }
+  if (!note) return;
+
+  DOM.title.value = note.title || "";
+  DOM.text.innerHTML = note.text || "";
 }
 
-/* =====================
+loadNote();
+
+
+/* ===============================
    AUTOSAVE (DEBOUNCE)
-===================== */
+================================ */
 function autoSave() {
+  if (!DOM.title || !DOM.text) return;
+
   clearTimeout(saveTimer);
 
   saveTimer = setTimeout(() => {
-    const title = titleInput.value.trim();
-    const text = textInput.innerHTML.trim();
+    const title = DOM.title.value.trim();
+    const text = DOM.text.innerHTML.trim();
 
+    // kalau kosong semua, ga usah simpan
     if (!title && !text) return;
 
+    // note baru
     if (!note) {
       noteId = crypto.randomUUID();
       note = {
@@ -38,59 +63,78 @@ function autoSave() {
         title: "",
         text: "",
         pinned: false,
+        trashed: false,
+        createdAt: Date.now(),
         updatedAt: Date.now()
       };
       notes.unshift(note);
     }
 
-
     note.title = title;
     note.text = text;
     note.updatedAt = Date.now();
+
     saveNotes(notes);
-  }, 300); // debounce 300ms
+  }, 300);
 }
 
-/* =====================
+
+/* ===============================
    FORMAT TOOLBAR
-===================== */
+================================ */
 function format(command, value = null) {
-  textInput.focus();               // 🔥 WAJIB
-  
-  if (command === 'fontSize' && value) {
+  if (!DOM.text) return;
+
+  DOM.text.focus();
+
+  if (value !== null) {
     document.execCommand(command, false, value);
   } else {
     document.execCommand(command);
   }
-  
+
   autoSave();
 }
 
-/* =====================
-   WORD/COUNT FUNCTION
-===================== */
+
+/* ===============================
+   COUNTER
+================================ */
 function updateCounts() {
-  const text = textInput.innerText || textInput.textContent || '';
-  const words = text.trim().split(/\s+/).filter(word => word.length > 0);
+  if (!DOM.text) return;
+
+  const text =
+    DOM.text.innerText ||
+    DOM.text.textContent ||
+    "";
+
+  const words = text
+    .trim()
+    .split(/\s+/)
+    .filter(Boolean).length;
+
   const chars = text.length;
-  
-  document.getElementById('wordCount').textContent = words.length;
-  document.getElementById('charCount').textContent = chars;
+
+  if (DOM.wordCount) DOM.wordCount.textContent = words;
+  if (DOM.charCount) DOM.charCount.textContent = chars;
 }
 
-/* =====================
+
+/* ===============================
    EVENTS
-===================== */
-titleInput.addEventListener("input", () => {
+================================ */
+DOM.title?.addEventListener("input", () => {
   autoSave();
   updateCounts();
 });
 
-textInput.addEventListener("input", () => {
+DOM.text?.addEventListener("input", () => {
   autoSave();
   updateCounts();
 });
 
-// Initial count update
+
+/* ===============================
+   INIT
+================================ */
 updateCounts();
-

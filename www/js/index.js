@@ -1,24 +1,45 @@
+/* ===============================
+   ENV
+================================ */
 const isNative = !!window.Capacitor?.isNativePlatform;
 
 
-const notesContainer = document.getElementById("notes");
-const pinnedContainer = document.getElementById("pinnedNotes");
-const pinnedTitle = document.getElementById("pinnedTitle");
-const othersTitle = document.getElementById("othersTitle");
+/* ===============================
+   DOM CACHE
+================================ */
+const DOM = {
+    notes: document.getElementById("notes"),
+    pinnedNotes: document.getElementById("pinnedNotes"),
+    pinnedTitle: document.getElementById("pinnedTitle"),
+    othersTitle: document.getElementById("othersTitle"),
+    emptyState: document.getElementById("emptyState"),
+    searchInput: document.getElementById("searchInput"),
 
+    sidebar: document.getElementById("sidebar"),
+    sidebarBackdrop: document.getElementById("sidebarBackdrop"),
+
+    deleteModal: document.getElementById("deleteModal"),
+    confirmDelete: document.getElementById("confirmDelete"),
+    cancelDelete: document.getElementById("cancelDelete"),
+};
+
+
+/* ===============================
+   RENDER
+================================ */
 function renderNotes(keyword = "") {
-    let notes = getNotes()
+    if (!DOM.notes || !DOM.pinnedNotes) return;
+
+    const notes = getNotes()
         .filter(n => !n.trashed)
         .map(n => ({
             ...n,
-            pinned: n.pinned || false,
-            updatedAt: n.updatedAt || 0
+            pinned: !!n.pinned,
+            updatedAt: n.updatedAt || n.createdAt || 0
         }));
 
-    const filtered = notes.filter(note =>
-        (note.title || "")
-            .toLowerCase()
-            .includes(keyword.toLowerCase())
+    const filtered = notes.filter(n =>
+        (n.title || "").toLowerCase().includes(keyword.toLowerCase())
     );
 
     const pinned = filtered
@@ -29,214 +50,163 @@ function renderNotes(keyword = "") {
         .filter(n => !n.pinned)
         .sort((a, b) => b.updatedAt - a.updatedAt);
 
-    pinnedContainer.innerHTML = "";
-    notesContainer.innerHTML = "";
-
-    const emptyState = document.getElementById("emptyState");
+    DOM.pinnedNotes.innerHTML = "";
+    DOM.notes.innerHTML = "";
 
     if (filtered.length === 0) {
-        emptyState.classList.remove("is-hidden");
-        pinnedTitle.classList.add("is-hidden");
-        othersTitle.classList.add("is-hidden");
+        DOM.emptyState?.classList.remove("is-hidden");
+        DOM.pinnedTitle?.classList.add("is-hidden");
+        DOM.othersTitle?.classList.add("is-hidden");
         return;
-    } else {
-        emptyState.classList.add("is-hidden");
     }
 
-    pinnedTitle.classList.toggle("is-hidden", pinned.length === 0);
-    othersTitle.classList.toggle("is-hidden", others.length === 0);
+    DOM.emptyState?.classList.add("is-hidden");
+    DOM.pinnedTitle?.classList.toggle("is-hidden", pinned.length === 0);
+    DOM.othersTitle?.classList.toggle("is-hidden", others.length === 0);
 
-    pinned.forEach(note =>
-        pinnedContainer.innerHTML += noteCard(note)
-    );
-
-    others.forEach(note =>
-        notesContainer.innerHTML += noteCard(note)
-    );
+    pinned.forEach(n => DOM.pinnedNotes.innerHTML += noteCard(n));
+    others.forEach(n => DOM.notes.innerHTML += noteCard(n));
 }
 
 
+/* ===============================
+   CARD
+================================ */
 function noteCard(note) {
     return `
-    <div class="p-3 m-2 listNotes pinned-card note-card"
-         onclick="openEditor('${note.id}')">
-        <p class="is-size-7 mb-2">
-            ${new Date(note.updatedAt || note.createdAt).toLocaleDateString()}
-        </p>
-      <article class="media">
-        <div class="media-content card-content">
-    
-          <div class="hiddenScroll">
-            <p class="judulCatatanIndex p3 title is-5">
-            ${note.title?.trim() || "Tanpa Judul"}
-            
-            </p>
-
-            <p class="is-size-6">
-                ${note.text?.substring(0, 15) || "(Tidak ada isi)"}
-                ${note.text && note.text.length > 15 ? "..." : ""}
-            </p>
-
-          <div class="card-footer is-flex is-justify-content-space-between mt-5">
-            <a onclick="event.stopPropagation(); askDelete('${note.id}')">
-              <i class='bx  bx-trash-alt'></i> 
-            </a>
-
-            <a class="mx-2"
-                onclick="event.stopPropagation(); shareNote('${note.id}')">
-                <i class='bx bx-share'></i>
-            </a>
-
-            <a onclick="event.stopPropagation(); togglePin('${note.id}')">
-              <i class='bx ${note.pinned ? "bxs-pin" : "bx-pin"}'></i>
-            </a>
-            
-            
-          </div>
-            
-        </div>
-      </article>
+    <div class="p-3 m-2 listNotes pinned-card note-card" onclick="openEditor('${note.id}')"> 
+        <p class="is-size-7 mb-2"> ${new Date(note.updatedAt || note.createdAt).toLocaleDateString()} </p> 
+        <article class="media"> 
+            <div class="media-content card-content"> 
+                <div class="hiddenScroll"> 
+                    <p class="judulCatatanIndex p3 title is-5"> ${note.title?.trim() || "Tanpa Judul"} </p> 
+                    <p class="is-size-6"> ${note.text?.substring(0, 15) || "(Tidak ada isi)"} ${note.text && note.text.length > 15 ? "..." : ""} </p> 
+                    <div class="card-footer is-flex is-justify-content-space-between mt-5"> 
+                        <a onclick="event.stopPropagation(); askDelete('${note.id}')"> <i class='bx bx-trash-alt'></i> </a> 
+                        <a class="mx-2" onclick="event.stopPropagation(); shareNote('${note.id}')"> <i class='bx bx-share'></i> </a> 
+                        <a onclick="event.stopPropagation(); togglePin('${note.id}')"> <i class='bx ${note.pinned ? "bxs-pin" : "bx-pin"}'></i></a> 
+                    </div> 
+                </div> 
+            </div>
+        </article> 
     </div>
-  `;
+    `;
 }
 
 
-const searchInput = document.getElementById("searchInput");
-
-searchInput.addEventListener("input", function () {
-    renderNotes(this.value);
-});
-
+/* ===============================
+   ACTIONS
+================================ */
 function togglePin(id) {
-    const notes = getNotes();
+    const notes = getNotes().map(n =>
+        n.id === id
+            ? { ...n, pinned: !n.pinned, updatedAt: Date.now() }
+            : n
+    );
 
-    const updatedNotes = notes.map(note => {
-        if (note.id === id) {
-            return { ...note, pinned: !note.pinned, updatedAt: Date.now() };
-        }
-        return note;
-    });
-
-    saveNotes(updatedNotes);
-    renderNotes(document.getElementById("searchInput").value);
+    saveNotes(notes);
+    renderNotes(DOM.searchInput?.value || "");
 }
-
 
 function openEditor(id) {
     location.href = `editor.html?id=${id}`;
 }
 
-async function shareNote(noteId) {
-    const note = getNotes().find(n => n.id === noteId);
+
+/* ===============================
+   SHARE
+================================ */
+async function shareNote(id) {
+    const note = getNotes().find(n => n.id === id);
     if (!note) return;
 
-    const title = note.title?.trim() || "Catatan dari Keepit";
-    const text = note.text?.trim() || "";
+    const title = note.title || "Catatan dari Keepit";
+    const text = note.text || "";
 
-    // 🌐 WEB
     if (!isNative) {
         if (navigator.share) {
-            try {
-                await navigator.share({
-                    title,
-                    text
-                });
-            } catch (err) {
-                console.error(err);
-            }
+            await navigator.share({ title, text });
         } else {
-            // fallback: copy ke clipboard
             await navigator.clipboard.writeText(`${title}\n\n${text}`);
             alert("Catatan disalin");
         }
         return;
     }
 
-    // 📱 ANDROID (Capacitor)
-    const { Share } = Capacitor.Plugins;
-
     try {
-        await Share.share({
-            title,
-            text
-        });
-    } catch (err) {
-        console.error(err);
+        const { Share } = Capacitor.Plugins;
+        await Share.share({ title, text });
+    } catch {
         alert("Gagal berbagi catatan");
     }
 }
 
 
+/* ===============================
+   DELETE (SOFT)
+================================ */
+let pendingDeleteId = null;
 
+function askDelete(id) {
+    pendingDeleteId = id;
+    DOM.deleteModal?.classList.add("is-active");
+}
+
+function closeDeleteModal() {
+    pendingDeleteId = null;
+    DOM.deleteModal?.classList.remove("is-active");
+}
 
 function moveToTrash(id) {
-    const notes = getNotes().map(note => {
-        if (note.id === id) {
-            return {
-                ...note,
-                trashed: true,
-                trashedAt: Date.now()
-            };
-        }
-        return note;
-    });
+    const notes = getNotes().map(n =>
+        n.id === id
+            ? { ...n, trashed: true, trashedAt: Date.now() }
+            : n
+    );
 
     saveNotes(notes);
 }
 
 
-let pendingDeleteId = null;
-
-function askDelete(noteId) {
-    pendingDeleteId = noteId;
-    document.getElementById("deleteModal").classList.add("is-active");
+/* ===============================
+   SIDEBAR
+================================ */
+function toggleSidebar() {
+    DOM.sidebar?.classList.toggle("active");
+    DOM.sidebarBackdrop?.classList.toggle("active");
 }
 
-function closeDeleteModal() {
-    pendingDeleteId = null;
-    document.getElementById("deleteModal").classList.remove("is-active");
+function closeSidebar() {
+    DOM.sidebar?.classList.remove("active");
+    DOM.sidebarBackdrop?.classList.remove("active");
 }
 
-document.getElementById("confirmDelete").addEventListener("click", () => {
-    if (pendingDeleteId !== null) {
-        moveToTrash(pendingDeleteId); // ✅ SOFT DELETE
-        renderNotes(document.getElementById("searchInput").value);              // ⬅️ INI YANG TADI HILANG
+
+/* ===============================
+   EVENTS
+================================ */
+DOM.searchInput?.addEventListener("input", e => {
+    renderNotes(e.target.value);
+});
+
+DOM.confirmDelete?.addEventListener("click", () => {
+    if (pendingDeleteId) {
+        moveToTrash(pendingDeleteId);
+        renderNotes(DOM.searchInput?.value || "");
     }
     closeDeleteModal();
 });
 
-document.getElementById("cancelDelete").addEventListener("click", closeDeleteModal);
+DOM.cancelDelete?.addEventListener("click", closeDeleteModal);
 
 document.querySelectorAll(
     "#deleteModal .delete, #deleteModal .modal-background"
-).forEach(el => el.addEventListener("click", closeDeleteModal));
+).forEach(el =>
+    el?.addEventListener("click", closeDeleteModal)
+);
 
 
-function formatDate(timestamp) {
-    if (!timestamp) return "—";
-
-    const d = new Date(timestamp);
-    const day = String(d.getDate()).padStart(2, "0");
-    const month = String(d.getMonth() + 1).padStart(2, "0");
-    const year = String(d.getFullYear()).slice(-2);
-
-    return `${day}/${month}/${year}`;
-}
-
-const fabBtn = document.getElementById("fabBtn");
-const fabMenu = document.getElementById("fabMenu");
-
-
-
-function toggleSidebar() {
-    document.getElementById("sidebar").classList.toggle("active");
-    document.getElementById("sidebarBackdrop").classList.toggle("active");
-}
-
-function closeSidebar() {
-    document.getElementById("sidebar").classList.remove("active");
-    document.getElementById("sidebarBackdrop").classList.remove("active");
-}
-
-
+/* ===============================
+   INIT
+================================ */
 renderNotes();
