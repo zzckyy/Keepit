@@ -54,6 +54,8 @@ function autoSave() {
 
     // kalau kosong semua, ga usah simpan
     if (!title && !text) return;
+    //jangan simpan tanpa teks
+    if (!text) return;
 
     // note baru
     if (!note) {
@@ -104,9 +106,8 @@ function updateCounts() {
   if (!DOM.text) return;
 
   const text =
-    DOM.text.innerText ||
-    DOM.text.textContent ||
-    "";
+    DOM.text.innerText || "";
+    DOM.text.textContent || "";
 
   const words = text
     .trim()

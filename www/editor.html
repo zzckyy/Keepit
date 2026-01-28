@@ -31,33 +31,33 @@
     </div>
     
     <div class="toolbar-container my-4">
-      <div class="field is-grouped is-grouped-multiline is-flex-wrap-wrap is-justify-content-center">
+      <div class=" is-flex is-flex-wrap-wrap is-justify-content-space-around">
         <div class="control">
-          <button onclick="format('bold')" type="button" class="button is-small ">
+          <button onclick="format('bold')" type="button" class="button is-small">
             <strong>B</strong>
           </button>
         </div>
         <div class="control">
-          <button onclick="format('italic')" type="button" class="button is-small ">
+          <button onclick="format('italic')" type="button" class="button is-small">
             <em>I</em>
           </button>
         </div>
         <div class="control">
-          <button onclick="format('underline')" type="button" class="button is-small ">
+          <button onclick="format('underline')" type="button" class="button is-small">
             <u>U</u>
           </button>
         </div>
         <div class="control">
-          <button onclick="format('strikeThrough')" type="button" class="button is-small ">
+          <button onclick="format('strikeThrough')" type="button" class="button is-small">
             <s>S</s>
           </button>
         </div>
         <div class="control">
-          <button onclick="format('insertUnorderedList')" type="button" class="button is-small ">
+          <button onclick="format('insertUnorderedList')" type="button" class="button is-small p-2">
             <i class="bx bx-list-ul"></i>
           </button>
         </div>
-        <div class="control">
+        <!-- <div class="control">
           <div class="select is-small">
             <select onchange="format('fontSize', this.value)">
               <option value="1">Kecil</option>
@@ -65,24 +65,24 @@
               <option value="5">Besar</option>
             </select>
           </div>
-        </div>
+        </div> -->
         <div class="control">
-          <button onclick="format('justifyLeft')" type="button" class="button is-small ">
+          <button onclick="format('justifyLeft')" type="button" class="button is-small p-2">
             <i class="bx bx-align-left"></i>
           </button>
         </div>
         <div class="control">
-          <button onclick="format('justifyCenter')" type="button" class="button is-small ">
+          <button onclick="format('justifyCenter')" type="button" class="button is-small p-2">
             <i class="bx bx-align-center"></i>
           </button>
         </div>
         <div class="control">
-          <button onclick="format('justifyRight')" type="button" class="button is-small is-light">
+          <button onclick="format('justifyRight')" type="button" class="button is-small p-2">
             <i class="bx bx-align-right"></i>
           </button>
         </div>
         <div class="control">
-          <button onclick="format('removeFormat')" type="button" class="button is-small is">
+          <button onclick="format('removeFormat')" type="button" class="button is-small p-2">
             <i class="bx bx-eraser"></i>
           </button>
         </div>
@@ -95,10 +95,8 @@
 
   <div class="container">
     <div class="editor-container">
-      <input id="titleInput" placeholder="Judul" class="input is-medium title mb-4" />
-      
-      <div id="textInput" contenteditable="true" class="editor-area p-4"
-           data-placeholder="Tulis catatan...">
+      <input id="titleInput" placeholder="Title" class="input is-medium title mb-4" />
+      <div id="textInput" contenteditable="true" class="editor-area p-4" data-placeholder="Tulis catatan...">
       </div>
       
       <div class="editor-stats is-flex is-justify-content-space-between is-size-7 has-text-grey px-3 py-2">
