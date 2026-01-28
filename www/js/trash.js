@@ -100,20 +100,22 @@ let deleteTargetId = null;
 
 function openDeleteModal(id) {
   deleteTargetId = id;
-  document.getElementById("deleteModal").classList.add("is-active");
+  document.getElementById("trashDeleteModal").classList.add("is-active");
 }
 
 function closeDeleteModal() {
   deleteTargetId = null;
-  document.getElementById("deleteModal").classList.remove("is-active");
+  document.getElementById("trashDeleteModal").classList.remove("is-active");
 }
 
-document.getElementById("confirmDeleteBtn").addEventListener("click", () => {
-  if (!deleteTargetId) return;
-
-  deletePermanent(deleteTargetId);
-  closeDeleteModal();
-});
+const confirmBtn = document.getElementById("confirmDeleteBtn");
+if (confirmBtn) {
+  confirmBtn.addEventListener("click", () => {
+    if (!deleteTargetId) return;
+    deletePermanent(deleteTargetId);
+    closeDeleteModal();
+  });
+}
 
 
 renderTrash();

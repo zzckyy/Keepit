@@ -1,5 +1,11 @@
 {
   "appId": "com.momaza.keepit",
   "appName": "keepit",
-  "webDir": "www"
+  "webDir": "www",
+  "plugins": {
+    "App": {
+      "disableBackButtonHandler": false
+    }
+  }
 }
+

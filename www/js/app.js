@@ -1,68 +1,80 @@
 // =====================
-// HELPER
+// CAPACITOR HELPERS
 // =====================
-function isNative() {
-  return !!(window.Capacitor && window.Capacitor.isNativePlatform());
-}
-
-// =====================
-// ANDROID BACK BUTTON
-// =====================
-if (isNative()) {
-  const { App } = window.Capacitor.Plugins;
-
-  App.addListener('backButton', () => {
-    const page = location.pathname.split('/').pop();
-
-    if (page && page !== 'index.html') {
-      window.location.href = 'index.html';
-    } else {
-      App.exitApp();
-    }
-  });
+function isAndroid() {
+  return (
+    window.Capacitor &&
+    typeof window.Capacitor.getPlatform === "function" &&
+    window.Capacitor.getPlatform() === "android"
+  );
 }
 
 // =====================
 // EXPORT NOTES (GLOBAL)
 // =====================
 window.exportNotes = async function () {
-  const notes = getNotes();
-  const dataStr = JSON.stringify(notes, null, 2);
-
-  // 🌐 WEB MODE
-  if (!isNative()) {
-    const blob = new Blob([dataStr], { type: "application/json" });
-    const url = URL.createObjectURL(blob);
-
-    const a = document.createElement("a");
-    a.href = url;
-    a.download = "keepit-notes-backup.json";
-    a.click();
-
-    URL.revokeObjectURL(url);
-    return;
-  }
-
-  // 📱 ANDROID MODE
   try {
-    const { Filesystem, Directory, Encoding, Share } =
-      window.Capacitor.Plugins;
+    const notes = getNotes();
+    const dataStr = JSON.stringify(notes, null, 2);
+
+    console.log("Platform:", window.Capacitor?.getPlatform?.());
+
+    // 🌐 WEB MODE
+    if (!isAndroid()) {
+      const blob = new Blob([dataStr], { type: "application/json" });
+      const url = URL.createObjectURL(blob);
+
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = `keepit-backup-${Date.now()}.json`;
+      a.click();
+
+      URL.revokeObjectURL(url);
+      alert("Export success");
+      return;
+    }
+
+    // 📱 ANDROID MODE
+    const Plugins = window.Capacitor.Plugins || {};
+    const Filesystem = Plugins.Filesystem;
+    const Share = Plugins.Share;
+
+    if (!Filesystem || !Share) {
+      throw new Error("Filesystem / Share plugin not imported");
+    }
+
+    console.log("Export Android mode");
+
+    const fileName = `keepit-backup-${Date.now()}.json`;
 
     const result = await Filesystem.writeFile({
-      path: `keepit-backup-${Date.now()}.json`,
+      path: fileName,
       data: dataStr,
-      directory: Directory.documents,
-      encoding: Encoding.UTF8
+      directory: "DOCUMENTS", 
+      encoding: "utf8"        
     });
 
+    console.log("File tersimpan:", result.uri);
+
+    await Share.share({
+      title: "Backup KeepIt",
+      text: "File backup KeepIt",
+      url: result.uri
+    });
+
+    alert("Export success");
+
   } catch (err) {
-    console.error(err);
-    alert("Gagal export ❌");
+    console.error("Export Error:", err);
+    alert(
+      "Xxport failed\n\n" +
+      (err?.message || JSON.stringify(err, null, 2))
+    );
   }
 };
 
 // =====================
-// IMPORT NOTES (GLOBAL)
+// IMPORT NOTES
 // =====================
 window.importNotes = function (event) {
   const file = event.target.files[0];
@@ -71,39 +83,24 @@ window.importNotes = function (event) {
   const reader = new FileReader();
   reader.onload = function (e) {
     try {
-      const importedNotes = JSON.parse(e.target.result);
-      if (!Array.isArray(importedNotes)) {
-        throw new Error("Format salah");
-      }
+      const data = JSON.parse(e.target.result);
+      if (!Array.isArray(data)) throw new Error("Wrong format, import .json file backup");
 
-      saveNotes(importedNotes);
-      alert("Import berhasil 🎉");
-
-      if (typeof renderNotes === "function") {
-        renderNotes();
-      }
+      saveNotes(data);
+      alert("Notes has been restored");
     } catch (err) {
-      alert("File invalid ❌");
+      alert("Backup file is not valid");
     }
   };
-
   reader.readAsText(file);
 };
 
+
 // =====================
-// CLEAR ALL DATA (GLOBAL)
+// CLEAR ALL
 // =====================
 window.clearAllData = function () {
-  if (
-    confirm(
-      "Apakah Anda yakin ingin menghapus semua catatan?\nTindakan ini tidak dapat dibatalkan!"
-    )
-  ) {
-    localStorage.removeItem("keepit_notes");
-    alert("Semua data telah dihapus");
-
-    if (typeof renderNotes === "function") {
-      renderNotes();
-    }
-  }
+  if (!confirm("Semua catatan akan dihapus permanen")) return;
+  localStorage.removeItem("keepit_notes");
+  alert("Semua data terhapus 🧹");
 };
