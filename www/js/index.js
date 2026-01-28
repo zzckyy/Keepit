@@ -80,7 +80,7 @@ function noteCard(note) {
             <div class="media-content card-content"> 
                 <div class="hiddenScroll"> 
                     <p class="judulCatatanIndex p3 title is-5"> ${note.title?.trim() || "Tanpa Judul"} </p> 
-                    <p class="is-size-6"> ${note.text?.substring(0, 15) || "(Tidak ada isi)"} ${note.text && note.text.length > 15 ? "..." : ""}  </p> 
+                    <p class="is-size-6"> ${note.text?.substring(0, 13) || "(Tidak ada isi)"} ${note.text && note.text.length > 15 ? "...<hr>" : "<hr>"}  </p> 
                     <div class="card-footer is-flex is-justify-content-space-between mt-5"> 
                         <a onclick="event.stopPropagation(); askDelete('${note.id}')"> <i class='bx bx-trash-alt'></i> </a> 
                         <a class="mx-2" onclick="event.stopPropagation(); shareNote('${note.id}')"> <i class='bx bx-share'></i> </a> 
