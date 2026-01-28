@@ -51,15 +51,10 @@ window.exportNotes = async function () {
     const result = await Filesystem.writeFile({
       path: `keepit-backup-${Date.now()}.json`,
       data: dataStr,
-      directory: Directory.Cache,
+      directory: Directory.documents,
       encoding: Encoding.UTF8
     });
 
-    await Share.share({
-      title: "KeepIt Backup",
-      text: "Backup catatan KeepIt",
-      files: [result.uri]
-    });
   } catch (err) {
     console.error(err);
     alert("Gagal export ❌");
