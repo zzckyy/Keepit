@@ -81,32 +81,22 @@
         </p>
 
         <div class="modal p-6" id="deleteModal">
-            <div class="modal-background"></div>
-
-            <div class="modal-card">
-                <header class="modal-card-head">
-                    <i class='bx  bx-alert-square is-size-3-touch mr-2'></i>
-                    <p class="modal-card-title">
-
-                        Hapus catatan?</p>
-                    <!-- <button class="delete" aria-label="close"></button> -->
-                </header>
-
-                <section class="modal-card-body">
-                    <p>
-                        Catatan ini akan dipindahkan ke sampah.
+                
+                <section class="card p-4 is-small">
+                    <p class="has-text-centered  is-size-6 ">
+                        Your note will be moved to Recycle Bin
                     </p>
-                </section>
+                    <hr>
+                    <div class="is-flex is-justify-content-center">
 
-                <footer class="modal-card-foot is-flex is-justify-content-center pb-4">
-                    <button class="button is-danger mx-2" id="confirmDelete">
-                        Konfirmasi
-                    </button>
-                    <button class="button mx-2" id="cancelDelete">
-                        Batal
-                    </button>
-                </footer>
-            </div>
+                        <button class="button is-danger m-4 is-link" id="confirmDelete">
+                            Delete
+                        </button>
+                        <button class="button m-4 is-link" id="cancelDelete">
+                            Cancel
+                        </button>
+                    </div>
+                </section>
         </div>
 
     </div>

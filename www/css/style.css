@@ -9,6 +9,8 @@
 
 * {
   transition: none;
+  -webkit-tap-highlight-color: transparent;
+  outline: none;
 }
 
 body{
