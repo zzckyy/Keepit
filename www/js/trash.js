@@ -19,24 +19,24 @@ function renderTrash() {
 
   notes.forEach(note => {
     const div = document.createElement("div");
-    div.className = "";
+    div.className = "listNotes note-card p-4 m-2";
 
     div.innerHTML = `
-       <div class="p-4 m-2 listNotes pinned-card note-card" onclick="openEditor('${note.id}')"> 
-        
-        <div class=""> 
-            <div class=""> 
-            <p class="judulCatatanIndex py-2 title is-5"> ${note.title?.trim() || "Tanpa Judul"} ${note.title.length > 18 ? "...": ""}</p>
-            <div class="is-flex is-justify-content-space-between">
-                    <p class="is-size-7"> ${new Date(note.updatedAt || note.createdAt).toLocaleDateString()} </p> 
-                    <div>
-                    <div class="is-flex"> 
-                        <a class="button is-small mr-2" onclick="event.stopPropagation(); askDelete('${note.id}')"> <i class='bx bx-trash-alt'></i> </a> 
-                        <a class="button is-small " onclick="event.stopPropagation(); togglePin('${note.id}')"> <i class='bx ${note.pinned ? "bxs-pin" : "bx-pin"}'></i></a> 
-                    </div> 
-            </div>
-        </div> 
-    </div>
+      <div class="">
+        <p class="judulCatatanIndex py-2 title is-5"> ${note.title?.trim() || "Tanpa Judul"} ${note.title.length > 18 ? "...": ""}</p>
+        <div class="is-flex is-justify-content-space-between">
+          <p class="is-size-7"> Deleted: ${formatDate(note.trashedAt)}</p>
+          <div class="is-flex">
+            <a href="javascript:void(0);" class="button is-size-5 is-small p-1 m-2" onclick="openDeleteModal('${note.id}')">
+              <i class='bx  bx-trash'></i>
+            </a>
+
+            <a href="javascript:void(0);" class="button is-size-5 p-1 m-2" onclick="restoreNote('${note.id}')">
+              <i class='bx  bx-folder-down-arrow'></i>
+            </a>
+          </div>
+        </div>
+      </div>
     `;
 
     trashList.appendChild(div);
