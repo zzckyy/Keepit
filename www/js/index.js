@@ -108,38 +108,6 @@ function openEditor(id) {
     location.href = `editor.html?id=${id}`;
 }
 
-
-/* ===============================
-   SHARE
-================================ */
-// async function shareNote(id) {
-//     const note = getNotes().find(n => n.id === id);
-//     if (!note) return;
-
-//     const title = note.title || "Catatan dari Keepit";
-//     const text = note.text || "";
-
-//     if (!isNative) {
-//         if (navigator.share) {
-//             await navigator.share({ title, text });
-//         } else {
-//             await Share.share({
-//                 title: 'Share this note to your friend',
-//                 text: 'Share via:'
-//             });
-//         }
-//         return;
-//     }
-
-//     try {
-//         const { Share } = Capacitor.Plugins;
-//         await Share.share({ title, text });
-//     } catch {
-//         alert("Gagal berbagi catatan");
-//     }
-// }
-
-
 /* ===============================
    DELETE (SOFT)
 ================================ */

@@ -67,7 +67,7 @@ window.exportNotes = async function () {
   } catch (err) {
     console.error("Export Error:", err);
     alert(
-      "Xxport failed\n\n" +
+      "export failed\n\n" +
       (err?.message || JSON.stringify(err, null, 2))
     );
   }
