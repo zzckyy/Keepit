@@ -166,8 +166,8 @@ button, .card, .listNotes, .fab-btn, .sidebar {
 
 .listNotes {
   cursor: pointer;
-  width: 150px;
-  min-height: 180px;
+  width: 100%;
+  min-height: 100px;
   overflow: hidden;
   border-radius: 1rem;
 
@@ -212,9 +212,7 @@ button, .card, .listNotes, .fab-btn, .sidebar {
 }
 
 .judulCatatanIndex {
-  min-height: 3rem;
-  border-bottom: 2px solid var(--text);
-  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--hr);
 }
 
 .headerCatatanIndex {

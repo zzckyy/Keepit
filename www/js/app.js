@@ -100,7 +100,7 @@ window.importNotes = function (event) {
 // CLEAR ALL
 // =====================
 window.clearAllData = function () {
-  if (!confirm("Semua catatan akan dihapus permanen")) return;
+  if (!confirm("All notes will be permanently deleted")) return;
   localStorage.removeItem("keepit_notes");
-  alert("Semua data terhapus 🧹");
+  alert("All data has been deleted");
 };

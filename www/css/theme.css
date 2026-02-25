@@ -19,6 +19,7 @@ html, body, .box, .card, .sidebar {
   --card: #ffffff;
   --sb: #eef1ef;
   --text: #1f2a24;
+  --hr : #6f9c8c;
 
   --primary: #7fa99b;   /* sage */
   --btn: #e4ebe7;
@@ -30,6 +31,7 @@ html, body, .box, .card, .sidebar {
   --card: #1a1f1d;
   --sb: #151a18;
   --text: #e6ebe8;
+  --hr : #6f9c8c;
 
   --primary: #8fbfaf;   /* sage terang */
   --btn: #1f2522;
@@ -37,7 +39,10 @@ html, body, .box, .card, .sidebar {
 }
 
 
-
+hr{
+  color: var(--hr);
+  background-color: var(--hr);
+}
 
 body {
   background: var(--bg);

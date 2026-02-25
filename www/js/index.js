@@ -68,27 +68,28 @@ function renderNotes(keyword = "") {
     others.forEach(n => DOM.notes.innerHTML += noteCard(n));
 }
 
+//memunculkan kembali text notesList
+// <p class="is-size-6"> ${note.text?.substring(0, 13) || "(Tidak ada isi)"} ${note.text && note.text.length > 15 ? "...<hr>" : "<hr>"}  </p> 
 
 /* ===============================
    CARD
 ================================ */
 function noteCard(note) {
     return `
-    <div class="p-3 m-2 listNotes pinned-card note-card" onclick="openEditor('${note.id}')"> 
-        <p class="is-size-7 mb-2"> ${new Date(note.updatedAt || note.createdAt).toLocaleDateString()} </p> 
-        <article class="media"> 
-            <div class="media-content card-content"> 
-                <div class="hiddenScroll"> 
-                    <p class="judulCatatanIndex p3 title is-5"> ${note.title?.trim() || "Tanpa Judul"} </p> 
-                    <p class="is-size-6"> ${note.text?.substring(0, 13) || "(Tidak ada isi)"} ${note.text && note.text.length > 15 ? "...<hr>" : "<hr>"}  </p> 
-                    <div class="card-footer is-flex is-justify-content-space-between mt-5"> 
-                        <a onclick="event.stopPropagation(); askDelete('${note.id}')"> <i class='bx bx-trash-alt'></i> </a> 
-                        <a class="mx-2" onclick="event.stopPropagation(); shareNote('${note.id}')"> <i class='bx bx-share'></i> </a> 
-                        <a onclick="event.stopPropagation(); togglePin('${note.id}')"> <i class='bx ${note.pinned ? "bxs-pin" : "bx-pin"}'></i></a> 
+    <div class="p-4 m-2 listNotes pinned-card note-card" onclick="openEditor('${note.id}')"> 
+        
+        <div class=""> 
+            <div class=""> 
+            <p class="judulCatatanIndex py-2 title is-5"> ${note.title?.trim() || "Tanpa Judul"} ${note.title.length > 18 ? "...": ""}</p>
+            <div class="is-flex is-justify-content-space-between">
+                    <p class="is-size-7"> ${new Date(note.updatedAt || note.createdAt).toLocaleDateString()} </p> 
+                    <div>
+                    <div class="is-flex"> 
+                        <a class="button is-small mr-2" onclick="event.stopPropagation(); askDelete('${note.id}')"> <i class='bx bx-trash-alt'></i> </a> 
+                        <a class="button is-small " onclick="event.stopPropagation(); togglePin('${note.id}')"> <i class='bx ${note.pinned ? "bxs-pin" : "bx-pin"}'></i></a> 
                     </div> 
-                </div> 
             </div>
-        </article> 
+        </div> 
     </div>
     `;
 }
@@ -167,20 +168,6 @@ function moveToTrash(id) {
     );
 
     saveNotes(notes);
-}
-
-
-/* ===============================
-   SIDEBAR
-================================ */
-function toggleSidebar() {
-    DOM.sidebar?.classList.toggle("active");
-    DOM.sidebarBackdrop?.classList.toggle("active");
-}
-
-function closeSidebar() {
-    DOM.sidebar?.classList.remove("active");
-    DOM.sidebarBackdrop?.classList.remove("active");
 }
 
 

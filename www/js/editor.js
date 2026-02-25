@@ -100,28 +100,6 @@ function format(command, value = null) {
 
 
 /* ===============================
-   COUNTER
-================================ */
-function updateCounts() {
-  if (!DOM.text) return;
-
-  const text =
-    DOM.text.innerText || "";
-    DOM.text.textContent || "";
-
-  const words = text
-    .trim()
-    .split(/\s+/)
-    .filter(Boolean).length;
-
-  const chars = text.length;
-
-  if (DOM.wordCount) DOM.wordCount.textContent = words;
-  if (DOM.charCount) DOM.charCount.textContent = chars;
-}
-
-
-/* ===============================
    EVENTS
 ================================ */
 DOM.title?.addEventListener("input", () => {
