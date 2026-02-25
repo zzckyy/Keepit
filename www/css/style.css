@@ -176,12 +176,10 @@ button, .card, .listNotes, .fab-btn, .sidebar {
 
 .listNotes-Sampah {
   cursor: pointer;
-  width: 400px;
-  min-height: 180px;
+  width: 100%;
+  min-height: 100px;
   overflow: hidden;
   border-radius: 1rem;
-
-  background: var(--btn);
 }
 
 

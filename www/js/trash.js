@@ -22,42 +22,20 @@ function renderTrash() {
     div.className = "";
 
     div.innerHTML = `
-       <div class="p-3 m-2 listNotes pinned-card note-card">
-        <p class="is-size-7 mb-2">
-            Deleted: ${formatDate(note.trashedAt)}
-        </p>
-      <article class="media">
-        <div class="media-content card-content">
-    
-          <div class="hiddenScroll">
-            <p class="judulCatatanIndex p3 title is-5">
-            ${note.title?.trim() || "Tanpa Judul"}
-            
-            </p>
-
-            <p class="is-size-6">
-                ${note.text?.substring(0, 15) || "(Tidak ada isi)"}
-                ${note.text && note.text.length > 15 ? "..." : ""}
-            </p>
-
-          <div class="is-flex mt-5">
-            <a href="javascript:void(0);" 
-             class="card-footer-item button is-size-5 p-1 m-2"
-             onclick="restoreNote('${note.id}')">
-            <i class='bx  bx-folder-down-arrow'></i> 
-          </a>
-
-            <a href="javascript:void(0);" 
-             class="card-footer-item button is-size-5 is-small p-1 m-2"
-             onclick="openDeleteModal('${note.id}')">
-            <i class='bx  bx-trash'></i> 
-          </a>
-            
-            
-          </div>
-            
-        </div>
-      </article>
+       <div class="p-4 m-2 listNotes pinned-card note-card" onclick="openEditor('${note.id}')"> 
+        
+        <div class=""> 
+            <div class=""> 
+            <p class="judulCatatanIndex py-2 title is-5"> ${note.title?.trim() || "Tanpa Judul"} ${note.title.length > 18 ? "...": ""}</p>
+            <div class="is-flex is-justify-content-space-between">
+                    <p class="is-size-7"> ${new Date(note.updatedAt || note.createdAt).toLocaleDateString()} </p> 
+                    <div>
+                    <div class="is-flex"> 
+                        <a class="button is-small mr-2" onclick="event.stopPropagation(); askDelete('${note.id}')"> <i class='bx bx-trash-alt'></i> </a> 
+                        <a class="button is-small " onclick="event.stopPropagation(); togglePin('${note.id}')"> <i class='bx ${note.pinned ? "bxs-pin" : "bx-pin"}'></i></a> 
+                    </div> 
+            </div>
+        </div> 
     </div>
     `;
 
