@@ -27,11 +27,11 @@ function renderTrash() {
         <div class="is-flex is-justify-content-space-between">
           <p class="is-size-7"> Deleted: ${formatDate(note.trashedAt)}</p>
           <div class="is-flex">
-            <a href="javascript:void(0);" class="button is-size-5 is-small p-1 m-2" onclick="openDeleteModal('${note.id}')">
+            <a href="javascript:void(0);" class="button is-small p-1 mr-2" onclick="openDeleteModal('${note.id}')">
               <i class='bx  bx-trash'></i>
             </a>
 
-            <a href="javascript:void(0);" class="button is-size-5 p-1 m-2" onclick="restoreNote('${note.id}')">
+            <a href="javascript:void(0);" class="button is-small p-1 " onclick="restoreNote('${note.id}')">
               <i class='bx  bx-folder-down-arrow'></i>
             </a>
           </div>

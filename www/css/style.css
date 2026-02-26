@@ -265,14 +265,6 @@ button, .card, .listNotes, .fab-btn, .sidebar {
   color: #ff9800;
 }
 
-
-.noteSampah {
-  cursor: pointer;
-  aspect-ratio: 3 / 4;
-  width: 100%;
-  max-width: 140px;
-}
-
 .fab-container {
   position: fixed;
   display: flex;
@@ -285,13 +277,13 @@ button, .card, .listNotes, .fab-btn, .sidebar {
 /* tombol bulat */
 .fab-btn {
   border-radius: 50%;
-  width: 56px;
-  height: 56px;
+  width: 60px;
+  height: 60px;
   font-size: 1.5rem;
   box-shadow: 0 6px 18px rgba(0, 0, 0, .25);
 }
 
-/* menu dropdown */
+/* floating button */
 .fab-menu {
   position: absolute;
   bottom: 70px;
@@ -317,10 +309,6 @@ button, .card, .listNotes, .fab-btn, .sidebar {
 i,
 .bx {
   color: var(--primary);
-}
-
-.cardSampah{
-  height: 80px;
 }
 
 /* Editor Stats */

@@ -81,8 +81,8 @@ function noteCard(note) {
             <div class="is-flex is-justify-content-space-between">
                 <p class="is-size-7"> ${new Date(note.updatedAt || note.createdAt).toLocaleDateString()} </p>
                 <div class="is-flex"> 
-                    <a class="button is-small mr-2" onclick="event.stopPropagation(); askDelete('${note.id}')"> <i class='bx bx-trash-alt'></i> </a> 
-                    <a class="button is-small " onclick="event.stopPropagation(); togglePin('${note.id}')"> <i class='bx ${note.pinned ? "bxs-pin" : "bx-pin"}'></i></a> 
+                    <a class="button is-small p-1 mr-2" onclick="event.stopPropagation(); askDelete('${note.id}')"> <i class='bx bx-trash-alt'></i> </a> 
+                    <a class="button is-small p-1 " onclick="event.stopPropagation(); togglePin('${note.id}')"> <i class='bx ${note.pinned ? "bxs-pin" : "bx-pin"}'></i></a> 
                 </div> 
             </div>
     </div>
