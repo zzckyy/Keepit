@@ -54,8 +54,8 @@ function autoSave() {
 
     // kalau kosong semua, ga usah simpan
     if (!title && !text) return;
-    //jangan simpan tanpa teks
-    if (!text) return;
+    //jangan simpan tanpa title
+    if (!title) return; // title kosong = gausah simpen
 
     // note baru
     if (!note) {
