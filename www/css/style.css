@@ -269,7 +269,7 @@ button, .card, .listNotes, .fab-btn, .sidebar {
   position: fixed;
   display: flex;
   flex-direction: column;
-  bottom: 20px;
+  bottom: 60px;
   right: 20px;
   z-index: 99999;
 }
@@ -363,4 +363,42 @@ i,
   border: 1px solid var(--background);
   border-radius: 6px;
   background: var(--btn);
+}
+
+.bottom-tab {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+
+  background: #f5f5f5;
+  /* border-top: 1px solid var(--hr); */
+  padding: 10px 0;
+
+  backdrop-filter: blur(10px);
+  background: var(--background);
+
+  z-index: 999; /* biar ga ketimpa */
+}
+
+.tab-item {
+  flex: 1;
+  text-align: center;
+  color: #777;
+  
+
+  /* border-radius: 6px;
+  width: 40%; */
+
+  /* background-color: var(--btn); */
+}
+
+.tab-item.is-active {
+  color: var(--text); /* warna bulma primary */
+
+  border-bottom: 1px solid var(--primary);
 }

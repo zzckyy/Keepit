@@ -16,25 +16,24 @@
 </head>
 
 <body class="">
-        <div class="m-4 my-2 is-flex is-justify-content-center">
-            <div class="field mb-0 ">
-                <div class="control has-icons-left">
-                    <input id="searchInput" class="input" type="text" placeholder="Search notes..."
-                        oninput="filterNotes()">
-                    <span class="icon is-left">
-                        <i class="bx bx-search"></i>
-                    </span>
+    <div class="m-4 my-2 is-flex is-justify-content-center">
+        <div class="field mb-0 ">
+            <div class="control has-icons-left">
+                <input id="searchInput" class="input" type="text" placeholder="Search notes..." oninput="filterNotes()">
+                <span class="icon is-left">
+                    <i class="bx bx-search"></i>
+                </span>
 
-                </div>
             </div>
-            <a class="button mx-2" href="trash.html">
-                <i class="bx bx-trash"></i>
-            </a>
-            <a class="button " href="settings.html">
-                <i class="bx bx-gear"></i>
-            </a>
-
         </div>
+        <a class="button mx-2" href="trash.html">
+            <i class="bx bx-trash"></i>
+        </a>
+        <a class="button " href="settings.html">
+            <i class="bx bx-gear"></i>
+        </a>
+
+    </div>
     <div class="container px-3 py-2">
         <h6 id="pinnedTitle" class="title is-6 has-text-grey px-2 is-hidden">
             Pinned Notes
@@ -79,6 +78,17 @@
 
         <a href="editor.html" class="button fab-btn is-large">
             <i class='bx bx-plus'></i>
+        </a>
+    </div>
+
+    <!-- navbar bawah -->
+
+    <div class="bottom-tab">
+        <a class="tab-item is-active p-2" href="#">
+            Notes
+        </a>
+        <a class="tab-item p-2">
+            To-Do
         </a>
     </div>
 
