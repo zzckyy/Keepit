@@ -16,16 +16,8 @@
 </head>
 
 <body class="">
-    <div class="m-4 my-2 is-flex is-justify-content-center">
-        <div class="field mb-0 ">
-            <div class="control has-icons-left">
-                <input id="searchInput" class="input" type="text" placeholder="Search notes..." oninput="filterNotes()">
-                <span class="icon is-left">
-                    <i class="bx bx-search"></i>
-                </span>
-
-            </div>
-        </div>
+    <div class="m-4 my-2 is-flex is-justify-content-end">
+        
         <a class="button mx-2" href="trash.html">
             <i class="bx bx-trash"></i>
         </a>
@@ -35,17 +27,21 @@
 
     </div>
     <div class="container px-3 py-2">
-        <h6 id="pinnedTitle" class="title is-6 has-text-grey px-2 is-hidden">
-            Pinned Notes
+        <h6 id="" class="title is-6 has-text-grey px-2 ">
+            To-Do
         </h6>
-        <div id="pinnedNotes" class="notes-grid">
-        </div>
+        <div id="todoList" class="todo-grid">
+            <div class="box">
+                <h6 class="title is-6">Judul</h6>
+                <hr>
+                <div class="is-flex is-align-items-center">
+                    <input type="checkbox" class="mr-2">
+                    <span>Contoh item to-do</span>
+                </div>
 
-        <h6 id="othersTitle" class="title is-6 has-text-grey px-2 is-hidden mt-4">
-            My Notes
-        </h6>
-        <div id="notes" class="notes-grid">
+            </div>
         </div>
+        
 
         <p id="emptyState" class="has-text-centered has-text-grey is-hidden">
             Create your first note
@@ -84,10 +80,10 @@
     <!-- navbar bawah -->
 
     <div class="bottom-tab">
-        <a class="tab-item is-active p-2" href="#">
+        <a class="tab-item  p-2" href="index.html">
             Notes
         </a>
-        <a class="tab-item p-2" href="todo.html">
+        <a class="tab-item is-active p-2" href="#">
             To-Do
         </a>
     </div>
