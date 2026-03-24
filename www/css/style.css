@@ -17,17 +17,17 @@ body{
   font-family: inherit;
 }
 
-button, .card, .listNotes, .fab-btn, .sidebar {
+/* button, .card, .listNotes, .fab-btn, .sidebar {
   transition: background-color var(--normal) var(--ease),
               transform var(--fast) var(--ease),
               box-shadow var(--fast) var(--ease),
               opacity var(--fast) var(--ease);
-}
+} */
 
 .listNotes,
 .noteSampah,
 .dropdown-menu,
-.dropdown-content {
+.dropdown-content, .box, .card {
 
   border: none;
   border-radius: 16px;
@@ -36,7 +36,8 @@ button, .card, .listNotes, .fab-btn, .sidebar {
 
 .listNotes,
 .noteSampah,
-.card {
+.card,
+.box{
   box-shadow: 0 6px 18px rgba(0,0,0,.08);
 }
 
@@ -389,7 +390,7 @@ i,
   flex: 1;
   text-align: center;
   color: #777;
-  
+
 
   /* border-radius: 6px;
   width: 40%; */
