@@ -265,8 +265,14 @@ i,
   background: var(--card);
   border-radius: 8px;
   padding: 12px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-  border: 1px solid var(--background);
+  /* box-shadow: 0 2px 8px rgba(0,0,0,0.1); */
+  border: 0px solid var(--background);
+
+  flex: 1 !important;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
 }
 
 /* Editor Container */
@@ -276,11 +282,11 @@ i,
   padding: 10px;
   box-shadow: 0 2px 8px rgba(0,0,0,0.1);
   border: 1px solid var(--background);
-  max-width: 100%;
+  width: 100%;
 }
 
 .editor-container .input {
-  border: 1px solid var(--background);
+  border: 0px solid var(--background) !important;
   background: var(--btn);
   font-size: 1.25rem;
   font-weight: 600;
