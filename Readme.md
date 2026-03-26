@@ -25,3 +25,10 @@ KeepIt aims to:
 - Maintain a distraction-free UI
 - Stay lightweight and efficient
 - Continuously improve usability
+
+## Package Use
+- @capacitor/app@8.0.0
+- @capacitor/filesystem@8.1.0
+- @capacitor/share@8.0.0
+- @capacitor/splash-screen@8.0.1
+- @capacitor/status-bar@8.0.2
