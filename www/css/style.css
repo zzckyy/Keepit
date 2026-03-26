@@ -403,3 +403,27 @@ i,
 
   border-bottom: 1px solid var(--primary);
 }
+
+.todo-title, .todo-input{
+  color: var(--text);
+}
+
+.todo-title{
+  border: none;
+  background: var(--btn);
+  font-size: 1rem;
+  width: 100%;
+  padding: 8px;
+  border-radius: 6px;
+}
+
+.todo-input {
+  border: none;
+  background: var(--btn);
+  border-radius: 6px;
+  width: 100%;
+}
+
+.todo-items{
+  background: var(--btn);
+}

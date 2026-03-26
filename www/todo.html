@@ -16,7 +16,7 @@
 
 <body class="">
     <div class="m-4 my-2 is-flex is-justify-content-end">
-        <a class="button " href="settings.html">
+        <a class="button is-medium" href="settings.html">
             <i class="bx bx-gear"></i>
         </a>
 
@@ -25,26 +25,10 @@
         <h6 id="" class="title is-6 has-text-grey px-2 ">
             To-Do
         </h6>
-        <div id="todoList" class="todo-grid">
-            <div class="box">
-                <h6 class="title is-6">Judul</h6>
-                <hr>
-                <label for="" id="" class="is-flex is-justify-content-between checkbox">
-                    <input type="checkbox" name="" id="" class="mx-3" class="checkbox">
-                     <input type="text" name="" id="" placeholder="Contoh item to-do" class="input is-small">
-                </label>
-
-                <div class="is-flex is-justify-content-end mt-4">
-                    <button class="button is-small is-link mx-1">
-                        Add
-                    </button>
-                    <button class="button is-small is-danger">
-                        Delete
-                    </button>
-                </div>
-            </div>
+        
+        <div class="todo-list" id="todoList">
+            
         </div>
-
 
         <p id="emptyState" class="has-text-centered has-text-grey is-hidden">
             Create your first note
@@ -55,9 +39,9 @@
     <!-- Floating Action Button -->
     <div class="fab-container">
 
-        <a href="editor_todo.html" class="button fab-btn is-large">
+        <button class="button fab-btn is-large" onclick="createTodoBox()">
             <i class='bx bx-plus'></i>
-        </a>
+        </button>
     </div>
 
     <!-- navbar bawah -->
@@ -71,7 +55,7 @@
         </a>
     </div>
 
-    <script type="module" src="js/todo.js"></script>
+    <script src="js/todo.js"></script>
     <script type="module" src="js/behavior.js"></script>
     <script src="js/theme.js"></script>
     <script src="js/storage.js"></script>

@@ -1,6 +1,9 @@
-import { StatusBar, Style } from "@capacitor/status-bar";
-import { SplashScreen } from "@capacitor/splash-screen";
+window.addEventListener("load", async () => {
+  if (window.Capacitor?.Plugins) {
+    const { StatusBar, SplashScreen } = window.Capacitor.Plugins;
 
-SplashScreen.hide();
-StatusBar.setOverlaysWebView({ overlay: true });
-StatusBar.setStyle({ style: Style.Dark });
+    await SplashScreen.hide();
+    await StatusBar.setOverlaysWebView({ overlay: true });
+    await StatusBar.setStyle({ style: "DARK" });
+  }
+});
