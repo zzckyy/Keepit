@@ -312,7 +312,7 @@ i,
   justify-content: space-around;
   align-items: center;
   padding-block: 10px;
-  background: transparent;
+  background: var(--card);
 
   z-index: 999; /* biar ga ketimpa */
 }
