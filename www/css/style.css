@@ -31,19 +31,6 @@
   pointer-events: auto;
 }
 
-.areaCatatan:focus,
-.judulCatatan:focus {
-  background-color: rgba(0, 0, 0, .03);
-}
-
-@media (prefers-reduced-motion: reduce) {
-  * {
-    animation: none !important;
-    transition: none !important;
-  }
-}
-
-
 .hiddenScroll {
   overflow: hidden;
   overflow-y: hidden;
@@ -55,7 +42,6 @@
   flex-direction: column;
   height: 100%;
 }
-
 
 .areaCatatan {
   border: none;
@@ -73,8 +59,6 @@
   scrollbar-width: none;
   scrollbar-color: var(--primary) transparent;
   overflow-x: hidden;
-
-  
 }
 
 .judulCatatan {
@@ -88,15 +72,12 @@
   min-height: 3rem;
   max-height: 8rem;
   background-color: transparent;
-  
-
 }
 
 .notes-grid {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  
 }
 
 
@@ -106,8 +87,6 @@
   min-height: 100px;
   overflow: hidden;
   border-radius: 1rem;
-
-  
 }
 
 .listNotes-Sampah {
@@ -120,21 +99,18 @@
 
 .backBtn {
   align-items: center;
-
 }
 
 .editor-area {
   min-height: 20rem;
   line-height: 1.6;
 
-  padding-bottom: 600px;
-  
+  padding-bottom: 400px; 
 }
 
 .editor-area:empty::before {
   content: attr(data-placeholder);
 }
-
 
 .editor-area ul {
   list-style: disc;
@@ -153,7 +129,6 @@
   font-size: 1.2rem;
   font-weight: bold;
 }
-
 
 .editBtn {
   background: transparent;
@@ -230,14 +205,12 @@
   gap: 10px;
   padding: 8px 10px;
   border-radius: 6px;
-  color: #363636;
 }
 
 .fab-item:hover {
   background: #f5f5f5;
 }
 
-i,
 .bx {
   color: var(--primary);
 }
@@ -249,27 +222,18 @@ i,
   padding: 8px 12px;
   margin-top: 8px;
   border: 1px solid var(--background);
-  
-}
-
-.editor-stats span {
-  font-weight: 500;
 }
 
 /* Toolbar Container */
 .toolbar-container {
   background: var(--card);
-  /* border-radius: 8px; */
+  border-radius: 8px;
   padding: 12px;
-  /* box-shadow: 0 2px 8px rgba(0,0,0,0.1); */
-  /* border: 3px solid var(--background); */
-  width: 92%;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
 
   position: sticky;
-  top: 50px;
+  top: 90px;
   z-index: 10;
-  
-  
 }
 
 /* Editor Container */
@@ -318,7 +282,9 @@ i,
   padding-block: 10px;
   background: var(--card);
 
-  z-index: 999; /* biar ga ketimpa */
+  z-index: 999;
+
+  border-radius: 6px 6px 0px 0px;
 }
 
 .tab-item {
@@ -329,7 +295,6 @@ i,
 
 .tab-item.is-active {
   color: var(--text);
-
   border-bottom: 2px solid var(--primary);
 }
 
@@ -344,8 +309,6 @@ i,
   font-weight: 900;
   width: 100%;
   height: 30px;
-  /* padding-inline: 6px; */
-
   border-bottom: 1px solid var(--primary);
 }
 
