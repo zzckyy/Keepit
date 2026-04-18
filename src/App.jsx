@@ -53,7 +53,7 @@ function App() {
         <Routes>
           <Route path="/" element={
             <>
-              <h1 className="app-title">Your Notes</h1>
+              <h1 className="title">Your Notes</h1>
 
               <div className="notes-grid">
                 {notes.map(note => (

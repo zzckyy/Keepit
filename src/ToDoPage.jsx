@@ -110,20 +110,18 @@ function ToDoPage() {
   };
 
   return (
-    <div className="page-container">
-      <div className="page-header">
-        <div>
-          <h1>To-Do</h1>
-          <p>Tambah dan centang item yang sudah selesai langsung dari setiap box.</p>
-        </div>
+    <div className="">
+      <div className="">
+          <h1 className='title is-3'>To-Do</h1>
+          {/* <p>Tambah dan centang item yang sudah selesai langsung dari setiap box.</p> */}
       </div>
       {saveState === 'Saving...' && (
         <div className="status-toast">Saving...</div>
       )}
 
-      <div className="page-grid">
+      <div className="fixed-grid">
         {todoBoxes.map(box => (
-          <div key={box.id} className="box-card">
+          <div key={box.id} className="cell box">
             <div className="box-top">
               <input
                 className="box-title"

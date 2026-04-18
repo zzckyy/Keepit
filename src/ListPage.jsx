@@ -97,20 +97,18 @@ function ListPage() {
   };
 
   return (
-    <div className="page-container">
-      <div className="page-header">
-        <div>
-          <h1>List</h1>
-          <p>Buat daftar yang dapat diisi langsung dalam setiap box.</p>
+    <div className="">
+      <div className="">
+          <h1 className='title is-3'>List</h1>
+          {/* <p className='subtitle is-3'>Buat daftar yang dapat diisi langsung dalam setiap box.</p> */}
         </div>
-      </div>
       {saveState === 'Saving...' && (
         <div className="status-toast">Saving...</div>
       )}
 
-      <div className="page-grid">
+      <div className="fixed-grid">
         {lists.map(list => (
-          <div key={list.id} className="box-card">
+          <div key={list.id} className="cell box">
             <div className="box-top">
               <input
                 className="box-title"
