@@ -33,7 +33,7 @@ function App() {
   };
 
   return (
-    <div className="app-container">
+    <div className="app-container fullbody">
       {/* SIDEBAR (desktop only) */}
       <aside className="sidebar">
         <div className="menu p-4">
@@ -49,7 +49,7 @@ function App() {
       </aside>
 
       {/* CONTENT */}
-      <div className="main-content">
+      <div className="main-content p-4">
         <Routes>
           <Route path="/" element={
             <>

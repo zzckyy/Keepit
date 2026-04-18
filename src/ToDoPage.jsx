@@ -110,7 +110,7 @@ function ToDoPage() {
   };
 
   return (
-    <div className="">
+    <div className="fullbody">
       <div className="">
           <h1 className='title is-3'>To-Do</h1>
           {/* <p>Tambah dan centang item yang sudah selesai langsung dari setiap box.</p> */}

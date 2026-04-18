@@ -97,7 +97,7 @@ function ListPage() {
   };
 
   return (
-    <div className="">
+    <div className="fullbody">
       <div className="">
           <h1 className='title is-3'>List</h1>
           {/* <p className='subtitle is-3'>Buat daftar yang dapat diisi langsung dalam setiap box.</p> */}
@@ -124,7 +124,7 @@ function ListPage() {
 
             <div className="item-list">
               {list.items.length === 0 && (
-                <p className="empty-box-text">Tambahkan item list di bawah.</p>
+                <p className="empty-box-text my-2">Tambahkan item list di bawah.</p>
               )}
               {list.items.map(item => (
                 <div key={item.id} className="list-item">
@@ -142,7 +142,7 @@ function ListPage() {
               ))}
             </div>
 
-            <button className="box-action" onClick={() => addListItem(list.id)}>
+            <button className="box-action my-2" onClick={() => addListItem(list.id)}>
               <i className="fas fa-plus"></i> Add item
             </button>
           </div>

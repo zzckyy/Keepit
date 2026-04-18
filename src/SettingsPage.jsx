@@ -42,7 +42,7 @@ function SettingsPage() {
   };
 
   return (
-    <div className="box">
+    <div className="box fullbody">
       <div className="">
           <h1 className='title is-3'>Settings</h1>
           <p>Customize your app experience</p>
