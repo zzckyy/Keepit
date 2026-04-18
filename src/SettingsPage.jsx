@@ -42,15 +42,12 @@ function SettingsPage() {
   };
 
   return (
-    <div className="page-container">
-      <div className="page-header">
-        <div>
-          <h1>Settings</h1>
+    <div className="box">
+      <div className="">
+          <h1 className='title is-3'>Settings</h1>
           <p>Customize your app experience</p>
-        </div>
       </div>
 
-      <div className="settings-content">
         <div className="settings-section">
           <h2>Appearance</h2>
           <div className="setting-item">
@@ -70,7 +67,6 @@ function SettingsPage() {
               </button>
             </div>
           </div>
-        </div>
 
         <div className="settings-section">
           <h2>Language</h2>

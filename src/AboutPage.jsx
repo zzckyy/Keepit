@@ -2,15 +2,12 @@ import './App.css';
 
 function AboutPage() {
   return (
-    <div className="page-container">
-      <div className="page-header">
+    <div className="box">
         <div>
-          <h1>About kiply</h1>
+          <h1 className='title is-3'>About kiply</h1>
           <p>Learn more about our app</p>
-        </div>
       </div>
 
-      <div className="about-content">
         <div className="about-section">
           <h2>What is kiply?</h2>
           <p>
@@ -64,7 +61,6 @@ function AboutPage() {
           <p>kiply v1.0.0</p>
           <p>Built with ❤️ using modern web technologies</p>
         </div>
-      </div>
     </div>
   );
 }
