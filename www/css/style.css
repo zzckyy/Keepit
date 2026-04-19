@@ -37,12 +37,6 @@
   overflow-x: hidden;
 }
 
-.editor-wrapper {
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-}
-
 .areaCatatan {
   border: none;
   box-shadow: none;
@@ -55,7 +49,7 @@
   min-height: 12rem;
   flex: 1;
   padding: 1rem;
-  overflow-y: scroll;
+  overflow-y: auto;
   scrollbar-width: none;
   scrollbar-color: var(--primary) transparent;
   overflow-x: hidden;
@@ -74,22 +68,7 @@
   background-color: transparent;
 }
 
-.notes-grid {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-}
-
-
 .listNotes {
-  cursor: pointer;
-  width: 100%;
-  min-height: 100px;
-  overflow: hidden;
-  border-radius: 1rem;
-}
-
-.listNotes-Sampah {
   cursor: pointer;
   width: 100%;
   min-height: 100px;
@@ -140,10 +119,6 @@
   min-width: 40px;
 }
 
-.editBtn:hover {
-  background: var(--btn);
-}
-
 .editBtn:active {
   background: var(--btn2);
 }
@@ -180,16 +155,14 @@
   z-index: 99999;
 }
 
-/* tombol bulat */
 .fab-btn {
   border-radius: 50%;
   width: 60px;
   height: 60px;
   font-size: 1.5rem;
-  box-shadow: 0 6px 18px rgba(0, 0, 0, .25);
+  box-shadow: 3px 6px 18px var(--primary);
 }
-
-/* floating button */
+*/
 .fab-menu {
   position: absolute;
   bottom: 70px;
@@ -198,42 +171,18 @@
   padding: 0.5rem;
 }
 
-/* item menu */
-.fab-item {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 8px 10px;
-  border-radius: 6px;
-}
-
-.fab-item:hover {
-  background: #f5f5f5;
-}
-
 .bx {
   color: var(--primary);
 }
 
-/* Editor Stats */
-.editor-stats {
-  background: var(--btn);
-  border-radius: 6px;
-  padding: 8px 12px;
-  margin-top: 8px;
-  border: 1px solid var(--background);
-}
-
-/* Toolbar Container */
 .toolbar-container {
   background: var(--card);
   border-radius: 8px;
-  padding: 12px;
   box-shadow: 0 2px 8px rgba(0,0,0,0.1);
 
-  position: sticky;
-  top: 90px;
-  z-index: 10;
+  position: relative;
+  /* top: 90px; */
+  /* z-index: 10; */
 }
 
 /* Editor Container */
@@ -245,7 +194,7 @@
   border: 1px solid var(--background);
   width: 100%;
 
-  padding-bottom: 200px;
+  /* padding-bottom: 200px; */
 }
 
 .editor-container .input {
@@ -263,7 +212,7 @@
 
 .editor-area {
   min-height: 30rem;
-  line-height: 1.6;
+  line-height: 1.5;
   width: 100%;
   border: 1px solid var(--background);
   border-radius: 6px;

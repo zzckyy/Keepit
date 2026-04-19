@@ -19,7 +19,7 @@ function renderTrash() {
 
   notes.forEach(note => {
     const div = document.createElement("div");
-    div.className = "listNotes note-card p-4 m-2";
+    div.className = "listNotes note-card p-4";
 
     div.innerHTML = `
       <div class="">

@@ -76,7 +76,7 @@ function renderNotes(keyword = "") {
 ================================ */
 function noteCard(note) {
     return `
-    <div class="p-4 m-2 listNotes pinned-card note-card" onclick="openEditor('${note.id}')">
+    <div class="p-3 listNotes pinned-card note-card" onclick="openEditor('${note.id}')">
             <p class="judulCatatanIndex py-2 title is-5"> ${note.title?.trim() || "Tanpa Judul"} ${note.title.length > 18 ? "...": ""}</p>
             <div class="is-flex is-justify-content-space-between">
                 <p class="is-size-7"> ${new Date(note.updatedAt || note.createdAt).toLocaleDateString()} </p>
